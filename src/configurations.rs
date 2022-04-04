@@ -1,4 +1,4 @@
-use config::{File, FileFormat};
+use config::{File};
 use serde::Deserialize;
 
 #[derive(Deserialize)]
@@ -34,7 +34,7 @@ impl DatabaseSettings {
 
 pub fn get_configuration() -> Result<Settings, config::ConfigError> {
     config::Config::builder()
-        .add_source(File::new("configuration", FileFormat::Yaml))
+        .add_source(File::with_name("configuration"))
         .build()?
         .try_deserialize()
 }
